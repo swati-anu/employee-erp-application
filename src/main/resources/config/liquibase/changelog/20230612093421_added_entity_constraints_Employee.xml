@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Employee.
+    -->
+    <changeSet id="20230612093421-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="designation_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__designation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="designation"/>
+
+        <addForeignKeyConstraint baseColumnNames="department_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__department_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department"/>
+
+        <addForeignKeyConstraint baseColumnNames="personaldetails_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__personaldetails_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personal_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="contacts_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__contacts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contacts"/>
+
+        <addForeignKeyConstraint baseColumnNames="bankdetails_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__bankdetails_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="banks_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="familyinfo_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__familyinfo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="family_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="workexperience_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__workexperience_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_experience"/>
+
+        <addForeignKeyConstraint baseColumnNames="education_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee__education_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="education"/>
+    </changeSet>
+</databaseChangeLog>
