@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="banksDetails">
+      <h2 data-cy="banksDetailsDetailsHeading"><span>Banks Details</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ banksDetails.id }}</span>
+        </dd>
+        <dt><span>Account Number</span></dt>
+        <dd>
+          <span>{{ banksDetails.accountNumber }}</span>
+        </dd>
+        <dt><span>Bank Name</span></dt>
+        <dd>
+          <span>{{ banksDetails.bankName }}</span>
+        </dd>
+        <dt><span>Branch Trans Code</span></dt>
+        <dd>
+          <span>{{ banksDetails.branchTransCode }}</span>
+        </dd>
+        <dt><span>Tax Number</span></dt>
+        <dd>
+          <span>{{ banksDetails.taxNumber }}</span>
+        </dd>
+        <dt><span>Gstin</span></dt>
+        <dd>
+          <span>{{ banksDetails.gstin }}</span>
+        </dd>
+        <dt><span>Tan</span></dt>
+        <dd>
+          <span>{{ banksDetails.tan }}</span>
+        </dd>
+        <dt><span>Branch Name</span></dt>
+        <dd>
+          <span>{{ banksDetails.branchName }}</span>
+        </dd>
+        <dt><span>Ref Table</span></dt>
+        <dd>
+          <span>{{ banksDetails.refTable }}</span>
+        </dd>
+        <dt><span>Ref Table Id</span></dt>
+        <dd>
+          <span>{{ banksDetails.refTableId }}</span>
+        </dd>
+        <dt><span>Company Id</span></dt>
+        <dd>
+          <span>{{ banksDetails.companyId }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ banksDetails.status }}</span>
+        </dd>
+        <dt><span>Last Modified</span></dt>
+        <dd>
+          <span>{{ banksDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Last Modified By</span></dt>
+        <dd>
+          <span>{{ banksDetails.lastModifiedBy }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/banks-details', banksDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
