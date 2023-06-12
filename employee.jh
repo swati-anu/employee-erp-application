@@ -1,0 +1,169 @@
+entity Employee {
+    firstName String
+   middleName String
+    lastName String
+    gender String
+    empUniqueId String required   // need to be unique but company wise so we can handle it throght the code
+    joindate Instant
+    status String
+    emailId String  // Added new field
+   employmentTypeId Long
+	reportingEmpId Long	//newly added
+    companyId Long
+    lastModified Instant
+    lastModifiedBy String
+}
+entity PersonalDetails {
+    telephoneNo String
+    nationality String		//MasterLookup value
+    maritalStatus String //MasterLookup value
+    religion String
+    employeeId Long
+    companyId Long
+//below feilds are considered as per Lokmanya and common details
+    bloodGroup String
+    dateOfBirth LocalDate
+	status String
+    lastModified Instant
+    lastModifiedBy String
+}
+entity FamilyInfo {
+    name String
+    dateOfBirth LocalDate
+    relation String //MasterLookup value
+    addressId Long
+	isEmployed Boolean
+	employedAt String
+    employeeId Long
+    companyId Long
+	status String
+	lastModified Instant
+    lastModifiedBy String
+}
+
+entity Address {
+    type String
+    line1 String
+    line2 String
+    country String
+    state  String
+    city String
+    pincode String
+    defaultAdd Boolean
+    landMark String
+    longitude Double
+    latitude Double
+    refTable String
+    refTableId Long
+    companyId Long
+	status String
+	lastModified Instant
+    lastModifiedBy String
+}
+
+
+entity Contacts {
+    name String
+    contactPref String // primary or secondary //MasterLookup value
+    contactType String // mobile or landline  or email //MasterLookup value
+    contact String
+    refTable String
+    refTableId Long
+    companyId Long
+	status String
+	lastModified Instant
+    lastModifiedBy String
+// new Added feilds
+  contactReference String
+}
+entity Department{
+    name String
+    status String
+    companyId Long
+    lastModified Instant
+    lastModifiedBy String
+}
+
+entity Designation{
+    name String
+    departmentId Long
+    status String
+    companyId Long
+    lastModified Instant
+    lastModifiedBy String
+}
+
+entity BanksDetails {
+    accountNumber Long
+    bankName String
+    branchTransCode String
+    taxNumber String
+	gstin String
+    tan String
+    branchName String
+    refTable String
+    refTableId Long
+    companyId Long
+	status String
+	lastModified Instant
+    lastModifiedBy String
+}
+
+entity Education {
+    institution String
+    subject String
+    startYear Instant
+    endDate Instant
+    educationType String //MasterLookup value
+    grade String
+    description String
+    employeeId Long
+    companyId Long
+	status String
+	lastModified Instant
+    lastModifiedBy String
+}
+
+entity WorkExperience { // changed entity
+    jobTitle String
+    companyName String
+    startDate Instant
+    endDate Instant
+    addressId Long  // Needs to remove because we taken addres as object
+    employeeId Long
+    jobDesc String
+	status String
+     companyId Long
+    lastModified Instant
+    lastModifiedBy String
+}
+
+relationship ManyToOne {
+Employee {designation(name)} to Designation
+Employee {department(name)} to Department
+Employee {branch(branchName)} to Branch
+Employee {personaldetails}to PersonalDetails
+Employee {address} to Address
+Employee {contacts} to Contacts
+Employee {bankdetails} to BanksDetails
+Employee {familyinfo} to FamilyInfo
+Employee {workexperience} to WorkExperience
+Employee {education} to Education
+
+}
+
+
+
+  // Set pagination options
+paginate * with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceClass
+
+filter *
+// Set an angular suffix
+// angularSuffix * with tvg
