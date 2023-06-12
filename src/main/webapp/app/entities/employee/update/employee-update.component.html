@@ -1,0 +1,302 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-employee-heading" data-cy="EmployeeCreateUpdateHeading">Create or edit a Employee</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_middleName">Middle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="middleName"
+            id="field_middleName"
+            data-cy="middleName"
+            formControlName="middleName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_gender">Gender</label>
+          <input type="text" class="form-control" name="gender" id="field_gender" data-cy="gender" formControlName="gender" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_empUniqueId">Emp Unique Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="empUniqueId"
+            id="field_empUniqueId"
+            data-cy="empUniqueId"
+            formControlName="empUniqueId"
+          />
+          <div *ngIf="editForm.get('empUniqueId')!.invalid && (editForm.get('empUniqueId')!.dirty || editForm.get('empUniqueId')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('empUniqueId')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_joindate">Joindate</label>
+          <div class="d-flex">
+            <input
+              id="field_joindate"
+              data-cy="joindate"
+              type="datetime-local"
+              class="form-control"
+              name="joindate"
+              formControlName="joindate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_emailId">Email Id</label>
+          <input type="text" class="form-control" name="emailId" id="field_emailId" data-cy="emailId" formControlName="emailId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_employmentTypeId">Employment Type Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="employmentTypeId"
+            id="field_employmentTypeId"
+            data-cy="employmentTypeId"
+            formControlName="employmentTypeId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_reportingEmpId">Reporting Emp Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="reportingEmpId"
+            id="field_reportingEmpId"
+            data-cy="reportingEmpId"
+            formControlName="reportingEmpId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_companyId">Company Id</label>
+          <input type="number" class="form-control" name="companyId" id="field_companyId" data-cy="companyId" formControlName="companyId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_designation">Designation</label>
+          <select
+            class="form-control"
+            id="field_designation"
+            data-cy="designation"
+            name="designation"
+            formControlName="designation"
+            [compareWith]="compareDesignation"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="designationOption" *ngFor="let designationOption of designationsSharedCollection">
+              {{ designationOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_department">Department</label>
+          <select
+            class="form-control"
+            id="field_department"
+            data-cy="department"
+            name="department"
+            formControlName="department"
+            [compareWith]="compareDepartment"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="departmentOption" *ngFor="let departmentOption of departmentsSharedCollection">
+              {{ departmentOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_personaldetails">Personaldetails</label>
+          <select
+            class="form-control"
+            id="field_personaldetails"
+            data-cy="personaldetails"
+            name="personaldetails"
+            formControlName="personaldetails"
+            [compareWith]="comparePersonalDetails"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="personalDetailsOption" *ngFor="let personalDetailsOption of personalDetailsSharedCollection">
+              {{ personalDetailsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_address">Address</label>
+          <select
+            class="form-control"
+            id="field_address"
+            data-cy="address"
+            name="address"
+            formControlName="address"
+            [compareWith]="compareAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="addressOption" *ngFor="let addressOption of addressesSharedCollection">{{ addressOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_contacts">Contacts</label>
+          <select
+            class="form-control"
+            id="field_contacts"
+            data-cy="contacts"
+            name="contacts"
+            formControlName="contacts"
+            [compareWith]="compareContacts"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="contactsOption" *ngFor="let contactsOption of contactsSharedCollection">{{ contactsOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bankdetails">Bankdetails</label>
+          <select
+            class="form-control"
+            id="field_bankdetails"
+            data-cy="bankdetails"
+            name="bankdetails"
+            formControlName="bankdetails"
+            [compareWith]="compareBanksDetails"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="banksDetailsOption" *ngFor="let banksDetailsOption of banksDetailsSharedCollection">
+              {{ banksDetailsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_familyinfo">Familyinfo</label>
+          <select
+            class="form-control"
+            id="field_familyinfo"
+            data-cy="familyinfo"
+            name="familyinfo"
+            formControlName="familyinfo"
+            [compareWith]="compareFamilyInfo"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="familyInfoOption" *ngFor="let familyInfoOption of familyInfosSharedCollection">
+              {{ familyInfoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_workexperience">Workexperience</label>
+          <select
+            class="form-control"
+            id="field_workexperience"
+            data-cy="workexperience"
+            name="workexperience"
+            formControlName="workexperience"
+            [compareWith]="compareWorkExperience"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="workExperienceOption" *ngFor="let workExperienceOption of workExperiencesSharedCollection">
+              {{ workExperienceOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_education">Education</label>
+          <select
+            class="form-control"
+            id="field_education"
+            data-cy="education"
+            name="education"
+            formControlName="education"
+            [compareWith]="compareEducation"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="educationOption" *ngFor="let educationOption of educationsSharedCollection">{{ educationOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

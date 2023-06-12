@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="workExperience">
+      <h2 data-cy="workExperienceDetailsHeading"><span>Work Experience</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ workExperience.id }}</span>
+        </dd>
+        <dt><span>Job Title</span></dt>
+        <dd>
+          <span>{{ workExperience.jobTitle }}</span>
+        </dd>
+        <dt><span>Company Name</span></dt>
+        <dd>
+          <span>{{ workExperience.companyName }}</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
+        <dd>
+          <span>{{ workExperience.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>End Date</span></dt>
+        <dd>
+          <span>{{ workExperience.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Address Id</span></dt>
+        <dd>
+          <span>{{ workExperience.addressId }}</span>
+        </dd>
+        <dt><span>Employee Id</span></dt>
+        <dd>
+          <span>{{ workExperience.employeeId }}</span>
+        </dd>
+        <dt><span>Job Desc</span></dt>
+        <dd>
+          <span>{{ workExperience.jobDesc }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ workExperience.status }}</span>
+        </dd>
+        <dt><span>Company Id</span></dt>
+        <dd>
+          <span>{{ workExperience.companyId }}</span>
+        </dd>
+        <dt><span>Last Modified</span></dt>
+        <dd>
+          <span>{{ workExperience.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Last Modified By</span></dt>
+        <dd>
+          <span>{{ workExperience.lastModifiedBy }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/work-experience', workExperience.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
